@@ -1,0 +1,3 @@
+alienigena_vivienda:
+    resource: "@AlienigenaViviendaBundle/Resources/config/routing.yml"
+    prefix:   /
