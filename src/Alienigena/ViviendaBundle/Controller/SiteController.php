@@ -12,7 +12,7 @@ class SiteController extends Controller
         $em 	= $this->getDoctrine()->getManager();
 
         $publicaciones 	= $em->getRepository('AlienigenaViviendaBundle:Publicacion')
-        							->findall();
+        							->findBy(array('estado' => 1), array('id' => 'ASC'));
         //$publicaciones=  (object) $publicaciones;
         //dump($publicaciones); exit;
 
