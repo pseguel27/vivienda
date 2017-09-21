@@ -1,6 +1,8 @@
 vivienda_home:
     path:     /
     defaults: { _controller: AlienigenaViviendaBundle:Site:index }
-vivienda_login:
-    path:     /login
-    defaults: { _controller: AlienigenaViviendaBundle:Site:login }
+panel_home:
+    path:     /panel
+    defaults: { _controller: AlienigenaViviendaBundle:Panel:index }
+logout:
+    path: /logout

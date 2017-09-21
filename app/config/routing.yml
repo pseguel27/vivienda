@@ -3,3 +3,9 @@ alienigena_vivienda:
     prefix:   /
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+#agroseguros_mandato_index:
+#    path: /test
+#    defaults:
+#        _controller: FrameworkBundle:Redirect:urlRedirect
+#        path: /Acceso
+#        permanent: true

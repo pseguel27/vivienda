@@ -40,9 +40,16 @@ twig:
 # Doctrine Configuration
 doctrine:
     dbal:
-        default_connection: default 
+        default_connection: default
         connections:
-                default: '%vivienda%'
+            default:        
+                driver: pdo_pgsql
+                host: '%database_host%'
+                port: '%database_port%'
+                dbname: '%database_name%'
+                user: '%database_user%'
+                password: '%database_password%'
+                charset: UTF8
 
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'
@@ -58,9 +65,9 @@ swiftmailer:
     spool: { type: memory }
 
 fos_user:
-    db_driver: orm # other valid values are 'mongodb' and 'couchdb'
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: Alienigena\ViviendaBundle\Entity\User
     from_email:
-       address: pato.seguel.moya@gmail.com
-       sender_name: Patricio
+        address: "pato.seguel.moya@gmail.com"
+        sender_name: "Patricio Seguel"

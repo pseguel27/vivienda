@@ -1,5 +1,10 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{% if error is defined %}
+    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -32,11 +37,38 @@
       </div>
 
       <div class="jumbotron">
-        <h1 class="display-3">Jumbotron heading</h1>
-        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
-      </div>
-
+        <form method="post" name="formLogin" action="{{ path("fos_user_security_check") }}" accept-charset="utf-8" autocomplete="off" role="form" class="form-horizontal" novalidate>
+          <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" />
+              <div class="form-group ">
+                <div class="col-xs-12 col-md-12">
+                  <label for="inputHelpBlock">RUT de usuario:</label>        
+                    <input type="text" class="form-control" name="_username" id="username" 
+                            placeholder="Ingrese RUT de Usuario" tabindex="1" ng-rut value="" ng-model="formLog._username"  required />
+                            <span ng-show="formLogin.$submitted || formLogin._username.$touched">
+                                <span ng-show="formLogin._username.$error.required || formLogin._username.$error.pattern" style="color: red">Debes completar el campo rut con digito verificador.</span>
+                            </span>
+                    <span id="helpBlock" class="help-block">El RUT ingresado debe tener digito verificador, ejemplo: 12112112-8.</span>
+                </div>
+              </div>
+              <div class="form-group ">
+                <div class="col-xs-12 col-md-12">
+                    <label for="inputHelpBlock">Contraseña: </label>
+                    <input type="password" class="form-control" name="_password" id="password"
+                    placeholder="Ingrese Contraseña" value="" ng-model="formLog._password" tabindex="2" required/>
+                    
+                    <span ng-show="formLogin.$submitted || formLogin._password.$touched">
+                        <span ng-show="formLogin._password.$error.required" style="color: red">*</span>
+                    </span>
+                </div>
+              </div>
+              <br/>
+              <div class="form-group">
+                <div class="col-xs-12">               
+                  <button type="submit" name="log-me-in" ng-click="removeP()" id="submit" ng-disabled="formLogin.$invalid" tabindex="5" class="btn btn-lg btn-primary">{# 'security.login.submit'|trans #} Ingresar</button>
+                </div>
+              </div>
+          </form>
+      </div>      
       <div class="row marketing">
       
       {% for publicacion in publicaciones %}   

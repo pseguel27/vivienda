@@ -1,6 +1,4 @@
 <?php
-// src/AppBundle/Entity/User.php
-
 namespace Alienigena\ViviendaBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
